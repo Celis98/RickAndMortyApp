@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.screens.character.CharacterActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_character"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_character_photo"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tv_character_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_character_photo"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Rick Sanchez" />
+
+            <TextView
+                android:id="@+id/tv_character_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_character_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_name"
+                tools:text="Tierra" />
+
+            <TextView
+                android:id="@+id/tv_character_specie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_character_location"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_location"
+                tools:text="Humano" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_character"
+            style="?android:attr/progressBarStyle"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_episodes_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/cv_character"
+        app:layout_constraintTop_toBottomOf="@+id/cv_character"
+        android:text="@string/episodes" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_character_episodes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_episodes_title" />
+
+    <ProgressBar
+        android:id="@+id/pb_episodes"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_character_episodes"
+        app:layout_constraintEnd_toEndOf="@+id/rv_character_episodes"
+        app:layout_constraintStart_toStartOf="@+id/rv_character_episodes"
+        app:layout_constraintTop_toTopOf="@+id/rv_character_episodes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
