@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickandmortyapp.data.db.DatabaseClient
 import com.example.rickandmortyapp.data.viewmodel.CharactersViewModel
 import com.example.rickandmortyapp.databinding.ActivityCharactersBinding
+import com.example.rickandmortyapp.ui.screens.favorites.FavoriteCharactersActivity
 import com.example.rickandmortyapp.ui.screens.character.CharacterActivity
 import com.example.rickandmortyapp.ui.screens.character.CharacterActivity.Companion.CHARACTER_ID
 import com.example.rickandmortyapp.ui.screens.characters.rv.RVCharactersAdapter
@@ -23,13 +25,26 @@ class MainActivity : AppCompatActivity() {
     private val charactersViewModel: CharactersViewModel by viewModels()
     private lateinit var binding: ActivityCharactersBinding
     private lateinit var rvCharactersAdapter: RVCharactersAdapter
+    private lateinit var appDatabase: DatabaseClient.AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCharactersBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initDB()
+        charactersViewModel.getCharacters()
         initRV()
         initUiStateLifecycle()
+        binding.btnFavoriteCharacters.setOnClickListener {
+            startActivity(
+                Intent(this, FavoriteCharactersActivity::class.java)
+            )
+        }
+    }
+
+    private fun initDB() {
+        appDatabase = DatabaseClient.getDBClient(this)
+        charactersViewModel.charactersDao = appDatabase.charactersDao()
     }
 
     private fun initRV() {
@@ -39,6 +54,16 @@ class MainActivity : AppCompatActivity() {
             },
             onLocationClickListener = { locationId ->
                 launchLocationActivity(locationId)
+            },
+            onDeleteClickListener = { id ->
+                charactersViewModel.removeCharacterById(id)?.let { indexToRemove ->
+                    rvCharactersAdapter.notifyItemRemoved(indexToRemove)
+                }
+            },
+            onSaveClickListener = { id ->
+                charactersViewModel.updateSaveCharacterById(id)?.let { indexToUpdate ->
+                   rvCharactersAdapter.notifyItemChanged(indexToUpdate)
+                }
             }
         )
         binding.rvCharacters.apply {

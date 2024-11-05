@@ -28,10 +28,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/iv_character_picture"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ib_favorite"
             app:layout_constraintStart_toEndOf="@+id/iv_character_picture"
             app:layout_constraintTop_toTopOf="@+id/iv_character_picture">
 
@@ -90,6 +89,25 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_episodes"
             app:layout_constraintStart_toEndOf="@+id/btn_episodes"
             app:layout_constraintTop_toTopOf="@+id/btn_episodes" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/red"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_location" />
+
+        <ImageButton
+            android:id="@+id/ib_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/btn_delete"
+            app:layout_constraintTop_toTopOf="@+id/iv_character_picture"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

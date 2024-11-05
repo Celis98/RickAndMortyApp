@@ -1,14 +1,9 @@
 package com.example.rickandmortyapp.ui.screens.location
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.rickandmortyapp.R
-import com.example.rickandmortyapp.data.api.models.Location
 import com.example.rickandmortyapp.data.viewmodel.LocationViewModel
 import com.example.rickandmortyapp.databinding.ActivityLocationBinding
 import kotlinx.coroutines.launch

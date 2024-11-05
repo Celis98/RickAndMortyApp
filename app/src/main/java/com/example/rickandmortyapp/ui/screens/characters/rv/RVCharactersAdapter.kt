@@ -8,7 +8,9 @@ import com.example.rickandmortyapp.databinding.CharacterViewBinding
 
 class RVCharactersAdapter(
     private val onEpisodesClickListener: (id: Int) -> Unit,
-    private val onLocationClickListener: (id: Int) -> Unit
+    private val onLocationClickListener: (id: Int) -> Unit,
+    private val onDeleteClickListener: (id: Int) -> Unit,
+    private val onSaveClickListener: (id: Int) -> Unit,
 ): RecyclerView.Adapter<CharacterPostViewHolder>() {
 
     var characters = emptyList<Character>()
@@ -22,7 +24,9 @@ class RVCharactersAdapter(
         return CharacterPostViewHolder(
             binding = binding,
             onEpisodesClickListener = onEpisodesClickListener,
-            onLocationClickListener = onLocationClickListener
+            onLocationClickListener = onLocationClickListener,
+            onDeleteClickListener = onDeleteClickListener,
+            onSaveClickListener = onSaveClickListener
         )
     }
 

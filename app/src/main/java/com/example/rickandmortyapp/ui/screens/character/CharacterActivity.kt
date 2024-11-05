@@ -1,16 +1,17 @@
 package com.example.rickandmortyapp.ui.screens.character
 
 import android.annotation.SuppressLint
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickandmortyapp.data.api.models.Character
 import com.example.rickandmortyapp.data.viewmodel.CharacterViewModel
 import com.example.rickandmortyapp.databinding.ActivityCharacterBinding
 import com.example.rickandmortyapp.ui.screens.character.rv.RVEpisodesAdapter
-import com.example.rickandmortyapp.utils.loadCircleImage
 import com.example.rickandmortyapp.utils.loadImage
 import kotlinx.coroutines.launch
 
@@ -60,6 +61,11 @@ class CharacterActivity : AppCompatActivity() {
     }
 
     private fun getCharacterId() {
+        val character = if (SDK_INT == 33) {
+            intent.extras?.getParcelable("characters", Character::class.java)
+        } else {
+            @Suppress("DEPRECATION") intent.extras?.get("character") as Character
+        }
         val characterId = intent.extras?.getInt(CHARACTER_ID)
         characterId?.let {
             characterViewModel.getCharacterInfo(characterId)

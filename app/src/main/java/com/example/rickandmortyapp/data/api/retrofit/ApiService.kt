@@ -4,7 +4,6 @@ import com.example.rickandmortyapp.data.api.models.Character
 import com.example.rickandmortyapp.data.api.models.Characters
 import com.example.rickandmortyapp.data.api.models.CompleteLocation
 import com.example.rickandmortyapp.data.api.models.Episode
-import com.example.rickandmortyapp.data.api.models.Location
 import retrofit2.http.GET
 import retrofit2.http.Path
 

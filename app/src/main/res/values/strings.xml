@@ -9,4 +9,5 @@
     <string name="character_location">Location: %1$s</string>
     <string name="episodes">Episodes</string>
     <string name="location">Location</string>
+    <string name="delete">Delete</string>
 </resources>

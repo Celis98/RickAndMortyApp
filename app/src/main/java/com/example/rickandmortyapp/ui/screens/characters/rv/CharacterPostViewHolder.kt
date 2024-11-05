@@ -12,12 +12,18 @@ import com.example.rickandmortyapp.utils.showToast
 class CharacterPostViewHolder(
     private val binding: CharacterViewBinding,
     private val onEpisodesClickListener: (position: Int) -> Unit,
-    private val onLocationClickListener: (id: Int) -> Unit
+    private val onLocationClickListener: (id: Int) -> Unit,
+    private val onDeleteClickListener: (index: Int) -> Unit,
+    private val onSaveClickListener: (id: Int) -> Unit
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(character: Character) {
         with(binding) {
             btnEpisodes.setOnClickListener {
                 onEpisodesClickListener(character.id)
+            }
+
+            btnDelete.setOnClickListener {
+                onDeleteClickListener(character.id)
             }
 
             btnLocation.setOnClickListener {
@@ -44,6 +50,22 @@ class CharacterPostViewHolder(
 
             tvCharacterLocation.text =
                 tvCharacterLocation.context.getString(R.string.character_location, character.location.name)
+
+            ibFavorite.apply {
+                setOnClickListener {
+                    onSaveClickListener(character.id)
+                }
+                setImageDrawable(
+                    ContextCompat.getDrawable(
+                        ibFavorite.context,
+                        if (character.isSaved) {
+                            android.R.drawable.btn_star_big_on
+                        } else {
+                            android.R.drawable.btn_star_big_off
+                        }
+                    )
+                )
+            }
 
             ivCharacterPicture.loadCircleImage(character.image)
 
